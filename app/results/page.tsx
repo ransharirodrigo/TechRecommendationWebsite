@@ -8,58 +8,12 @@ export default function ResultsPage() {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const dummyResults = [
-      {
-        name: "Dell Inspiron 15",
-        price: 89000,
-        image: "/laptops/dell-inspiron.png",
-        description: "15.6-inch laptop with Intel i5, 16GB RAM, ideal for development and daily tasks.",
-        tags: ["Web Development", "Intel i5", "16GB RAM"],
-        badge: "Best Value"
-      },
-      {
-        name: "HP Pavilion",
-        price: 76000,
-        image: "/laptops/hp-pavilion.png",
-        description: "Affordable laptop suitable for students and general use.",
-        tags: ["Student", "General Use"],
-        badge: "Student Pick"
-      },
-      {
-        name: "MacBook Air M2",
-        price: 150000,
-        image: "/laptops/macbook-air.png",
-        description: "Lightweight MacBook with excellent battery and performance for developers.",
-        tags: ["UI Design", "Lightweight", "Apple"],
-        badge: "Premium"
-      },
-      {
-        name: "Dell Inspiron 15",
-        price: 89000,
-        image: "/laptops/dell-inspiron.png",
-        description: "15.6-inch laptop with Intel i5, 16GB RAM, ideal for development and daily tasks.",
-        tags: ["Web Development", "Intel i5", "16GB RAM"],
-        badge: "Best Value"
-      },
-      {
-        name: "HP Pavilion",
-        price: 76000,
-        image: "/laptops/hp-pavilion.png",
-        description: "Affordable laptop suitable for students and general use.",
-        tags: ["Student", "General Use"],
-        badge: "Student Pick"
-      },
-      {
-        name: "MacBook Air M2",
-        price: 150000,
-        image: "/laptops/macbook-air.png",
-        description: "Lightweight MacBook with excellent battery and performance for developers.",
-        tags: ["UI Design", "Lightweight", "Apple"],
-        badge: "Premium"
-      }
-    ];
-
-    setResults(dummyResults);
+    const stored = sessionStorage.getItem("results");
+    if (stored) {
+      setResults(JSON.parse(stored));
+    } else {
+      router.push("/");
+    }
   }, []);
 
   return (

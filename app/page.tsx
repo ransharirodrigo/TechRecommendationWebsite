@@ -25,27 +25,28 @@ export default function Home() {
     setError("");
 
     try {
+      const response = await fetch("/api/recommend", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong");
+      }
+      console.log(data);
+      sessionStorage.setItem("results", JSON.stringify(data));
+
       router.push("/results");
-      // const response = await fetch("/api/recommend", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ prompt }),
-      // });
 
-      // const data = await response.json();
-
-      // if (!response.ok) {
-      //   setError(data.error || "Something went wrong");
-      //   setLoading(false);
-      //   return;
-      // }
-
-      // sessionStorage.setItem("prompt", prompt);
-      // sessionStorage.setItem("results", JSON.stringify(data));
-      // router.push("/results");
-    } catch (err) {
-      // setError("Failed to connect to server");
-      // setLoading(false);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Failed to get AI recommendations");
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -65,7 +66,7 @@ export default function Home() {
 
         {/* Input & Examples Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
-          
+
           {/* Textarea - Left Side (takes 2 columns on lg) */}
           <div className="lg:col-span-2">
             <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wide mb-4">
