@@ -88,7 +88,7 @@ npm install @google/genai
 <p>For issues or questions, feel free to:</p>
 <ul>
     <li>Open an issue in this repository</li>
-    <li>Email: <a href="mailto:ransharirodrigo@example.com">ransharirodrigo@example.com</a></li>
+    <li>Email: <a href="mailto:ransharirodrigo@gmail.com">ransharirodrigo@gmail.com</a></li>
 </ul>
 
 <hr>
