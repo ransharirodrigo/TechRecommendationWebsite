@@ -32,6 +32,30 @@ export default function ResultsPage() {
         description: "Lightweight MacBook with excellent battery and performance for developers.",
         tags: ["UI Design", "Lightweight", "Apple"],
         badge: "Premium"
+      },
+      {
+        name: "Dell Inspiron 15",
+        price: 89000,
+        image: "/laptops/dell-inspiron.png",
+        description: "15.6-inch laptop with Intel i5, 16GB RAM, ideal for development and daily tasks.",
+        tags: ["Web Development", "Intel i5", "16GB RAM"],
+        badge: "Best Value"
+      },
+      {
+        name: "HP Pavilion",
+        price: 76000,
+        image: "/laptops/hp-pavilion.png",
+        description: "Affordable laptop suitable for students and general use.",
+        tags: ["Student", "General Use"],
+        badge: "Student Pick"
+      },
+      {
+        name: "MacBook Air M2",
+        price: 150000,
+        image: "/laptops/macbook-air.png",
+        description: "Lightweight MacBook with excellent battery and performance for developers.",
+        tags: ["UI Design", "Lightweight", "Apple"],
+        badge: "Premium"
       }
     ];
 
@@ -39,55 +63,66 @@ export default function ResultsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-12">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-8 py-16">
 
-        {/* Header */}
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900">
-            Recommended for You
-          </h1>
-          <p className="mt-3 text-gray-600">
-            Based on your needs and budget
-          </p>
+        {/* Header Section - Single Row */}
+        <div className="flex items-start justify-between mb-16">
+          <div>
+            <h1 className="text-5xl font-bold text-gray-900 tracking-tight">
+              Recommended for You
+            </h1>
+            <p className="mt-3 text-base text-gray-500 font-normal">
+              Based on your needs and budget
+            </p>
+          </div>
+
+          <button
+            onClick={() => router.push("/")}
+            className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium text-sm whitespace-nowrap"
+          >
+            ← Start new recommendation
+          </button>
         </div>
 
-        {/* Cards */}
+        {/* Cards Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((product, index) => (
             <div
               key={index}
-              className="relative bg-white border border-gray-200 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2"
+              className="relative bg-white border border-gray-200 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-200"
             >
               {/* Badge */}
               {product.badge && (
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-bold">
+                <div className="absolute top-6 right-6 px-2.5 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-semibold tracking-wide">
                   {product.badge}
                 </div>
               )}
 
-              {/* Image */}
-              <div className="h-48 flex items-center justify-center mb-5">
+              {/* Image Container */}
+              <div className="h-56 flex items-center justify-center mb-8 bg-gray-50 rounded-lg">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="max-h-full object-contain rounded-xl"
+                  className="max-h-full max-w-full object-contain"
                 />
               </div>
 
-              {/* Info */}
-              <h2 className="text-lg font-bold text-gray-900">{product.name}</h2>
-              <p className="mt-2 text-sm text-gray-600 line-clamp-3">
+              {/* Product Info */}
+              <h2 className="text-lg font-semibold text-gray-900">
+                {product.name}
+              </h2>
+              <p className="mt-3 text-sm text-gray-600 leading-relaxed line-clamp-2">
                 {product.description}
               </p>
 
               {/* Tags */}
               {product.tags && (
-                <div className="flex flex-wrap gap-2 mt-3">
+                <div className="flex flex-wrap gap-2 mt-5">
                   {product.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-semibold"
+                      className="inline-block text-xs px-2.5 py-1 rounded-md bg-gray-100 text-gray-700 font-medium"
                     >
                       {tag}
                     </span>
@@ -95,27 +130,17 @@ export default function ResultsPage() {
                 </div>
               )}
 
-              {/* Footer */}
-              <div className="flex items-center justify-between mt-6">
-                <span className="text-xl font-extrabold text-blue-600">
+              {/* Footer - Price and Button */}
+              <div className="flex items-center justify-between mt-8 pt-8 border-t border-gray-100">
+                <span className="text-2xl font-bold text-gray-900">
                   ₹ {product.price.toLocaleString()}
                 </span>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
+                <button className="px-5 py-2.5 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium text-sm">
                   View Details
                 </button>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Back button */}
-        <div className="mt-16 text-center">
-          <button
-            onClick={() => router.push("/")}
-            className="px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition font-semibold"
-          >
-            ← Start a new recommendation
-          </button>
         </div>
 
       </div>
