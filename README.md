@@ -8,31 +8,29 @@
 
 <h3>✨ AI-Powered Personalization</h3>
 <ul>
-    <li>Get customized laptop recommendations based on your profession and usage.</li>
-    <li>Understand <strong>why</strong> each laptop is perfect for your specific needs.</li>
-    <li>AI-generated explanations for every recommendation.</li>
-    <li>Smart validation of your profession and requirements.</li>
+  <li>Get customized laptop recommendations based on your profession and usage.</li>
+  <li>Understand <strong>why</strong> each laptop is perfect for your specific needs.</li>
+  <li>AI-generated explanations for every recommendation.</li>
+  <li>Smart validation of your profession and requirements.</li>
 </ul>
 
 <h3>💰 Real-Time Price Comparison</h3>
 <ul>
-    <li>Compare prices across multiple retailers.</li>
-    <li>See the best deals at a glance.</li>
-    <li>Direct links to purchase from your preferred store.</li>
-    <li>Price comparison from leading retailers.</li>
+  <li>Compare prices across multiple retailers.</li>
+  <li>See the best deals at a glance.</li>
+  <li>Direct links to purchase from your preferred store.</li>
 </ul>
 
 <h3>📊 Comprehensive Product Information</h3>
 <ul>
-    <li>Detailed specifications (Processor, RAM, Storage, Display).</li>
-    <li>Clear explanation of why each laptop suits your needs.</li>
-    <li>Tags and badges like "Best Value" or "Student Pick" for easier decision-making.</li>
+  <li>Detailed specifications (Processor, RAM, Storage, Display).</li>
+  <li>Clear explanation of why each laptop suits your needs.</li>
+  <li>Tags and badges like "Best Value" or "Student Pick" for easier decision-making.</li>
 </ul>
 
 <hr>
 
 <h2>📖 Getting Started</h2>
-<p>Follow these steps to set up <strong>Smart Tech Finder</strong> locally and start generating AI-powered laptop recommendations.</p>
 
 <h3>1️⃣ Clone the repository</h3>
 <pre><code>git clone https://github.com/ransharirodrigo/TechRecommendationWebsite.git
@@ -69,26 +67,71 @@ npm install @google/genai
   /results/page.tsx            # Results page rendering recommendations
 /public
   /laptops                     # Laptop images
+/__tests__/
+  /api/recommend.test.ts       # Backend tests for /api/recommend
+/docs/
+  testing.md                   # Documentation for testing
+  architecture.md              # Documentation for folder structure & API logic
 .env.local                      # Your Gemini API key
 </code></pre>
 
 <hr>
 
+<h2>🧪 Running Tests</h2>
+<p>We use <strong>Jest + ts-jest</strong> to test backend functionality without calling the real AI.</p>
+
+<h3>Run tests</h3>
+<pre><code>npm run test
+</code></pre>
+
+<h3>Example tests</h3>
+<ul>
+  <li>Empty prompt → returns 400 error</li>
+  <li>Non-tech prompt → blocked</li>
+  <li>Valid tech prompt → returns recommendations array</li>
+  <li>Invalid AI JSON → safe error handling</li>
+</ul>
+<p>📄 See full testing documentation: <a href="./docs/testing.md">docs/testing.md</a></p>
+
+<hr>
+
+<h2>🏗 Architecture & Folder Structure</h2>
+<p>📄 Full architecture explanation: <a href="./docs/architecture.md">docs/architecture.md</a></p>
+
+<hr>
+
 <h2>💡 Tips & Recommendations</h2>
 <ul>
-    <li>Keep your prompt concise (~500 characters) for best results.</li>
-    <li>Ensure <code>GEMINI_API_KEY</code> is valid and has API access.</li>
-    <li>You can customize AI response formatting in <code>route.ts</code> for different data shapes.</li>
-    <li>For production deployment (Vercel, Netlify, etc.), add the API key in <strong>Environment Variables</strong>.</li>
+  <li>Keep your prompt concise (~500 characters) for best results.</li>
+  <li>Ensure <code>GEMINI_API_KEY</code> is valid and has API access.</li>
+  <li>You can customize AI response formatting in <code>route.ts</code> for different data shapes.</li>
+  <li>For production deployment (Vercel, Netlify, etc.), add the API key in <strong>Environment Variables</strong>.</li>
 </ul>
 
 <hr>
 
+<h2>🛠 Contribution Guidelines</h2>
+<ol>
+  <li>Fork the repository.</li>
+  <li>Create a feature branch:
+    <pre><code>git checkout -b feature/your-feature</code></pre>
+  </li>
+  <li>Make your changes and <strong>write tests</strong> if needed.</li>
+  <li>Commit your changes:
+    <pre><code>git commit -m "feat: add new feature X"</code></pre>
+  </li>
+  <li>Push to your branch:
+    <pre><code>git push origin feature/your-feature</code></pre>
+  </li>
+  <li>Open a Pull Request for review.</li>
+</ol>
+
+<hr>
+
 <h2>📞 Contact / Support</h2>
-<p>For issues or questions, feel free to:</p>
 <ul>
-    <li>Open an issue in this repository</li>
-    <li>Email: <a href="mailto:ransharirodrigo@gmail.com">ransharirodrigo@gmail.com</a></li>
+  <li>Open an issue in this repository</li>
+  <li>Email: <a href="mailto:ransharirodrigo@gmail.com">ransharirodrigo@gmail.com</a></li>
 </ul>
 
 <hr>
