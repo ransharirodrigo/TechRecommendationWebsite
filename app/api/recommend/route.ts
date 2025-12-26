@@ -25,17 +25,36 @@ export async function POST(req: Request) {
             contents: [
                 {
                     role: "user",
-                    parts: [{
-                        text: `
-You are a laptop recommendation engine.
+                    parts: [
+                        {
+                            text: `
+You are an AI assistant for a laptop recommendation website.
 
-Based on the user's requirements, recommend EXACTLY 3 laptops.
+STEP 1:
+Determine whether the user's prompt is related to:
+- buying a laptop
+- choosing a computer
+- tech usage (coding, gaming, editing, studying)
+- budget for laptops or PCs
+
+STEP 2:
+IF the prompt is NOT related to technology or laptops:
+Return ONLY this JSON and NOTHING else:
+
+{
+  "error": "NOT_TECH_RELATED"
+}
+
+STEP 3:
+IF the prompt IS tech-related:
+Recommend EXACTLY 3 laptops.
 
 Return ONLY valid JSON.
-DO NOT include explanations or markdown.
-DO NOT include backticks.
+NO explanations.
+NO markdown.
+NO backticks.
 
-The JSON format MUST be:
+JSON format MUST be:
 
 [
   {
@@ -48,32 +67,39 @@ The JSON format MUST be:
   }
 ]
 
-User requirements:
+User prompt:
 ${prompt}
 `
-                    }],
-                },
-            ],
+                        }
+                    ]
+                }
+            ]
         });
+
 
         let data;
 
         try {
             data = JSON.parse(response.text);
-        } catch (e) {
-            console.error("JSON parse failed:", response.text);
+        } catch {
             return NextResponse.json(
                 { error: "Invalid AI response format" },
                 { status: 500 }
             );
         }
 
+        // 🔴 Handle non-tech prompts
+        if (data?.error === "NOT_TECH_RELATED") {
+            return NextResponse.json(
+                {
+                    error: "Please enter a tech-related prompt (example: laptop for coding, budget 90,000 LKR)"
+                },
+                { status: 400 }
+            );
+        }
+
         return NextResponse.json(data);
 
-
-        return NextResponse.json({
-            text: response.text,
-        });
 
     } catch (err: any) {
         console.error("API ERROR:", err);
