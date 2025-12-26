@@ -47,7 +47,8 @@ Return ONLY this JSON and NOTHING else:
 
 STEP 3:
 IF the prompt IS tech-related:
-Recommend EXACTLY 3 laptops.
+Recommend a reasonable number of laptops based on the user's needs and budget.
+Do NOT force a fixed number.
 
 Return ONLY valid JSON.
 NO explanations.
