@@ -66,7 +66,6 @@ npm install @google/genai
   /page.tsx                    # Home page with prompt input
   /results/page.tsx            # Results page rendering recommendations
 /public
-  /laptops                     # Laptop images
 /__tests__/
   /api/recommend.test.ts       # Backend tests for /api/recommend
 /docs/
@@ -81,7 +80,7 @@ npm install @google/genai
 <p>We use <strong>Jest + ts-jest</strong> to test backend functionality without calling the real AI.</p>
 
 <h3>Run tests</h3>
-<pre><code>npm run test
+<pre><code>npm test
 </code></pre>
 
 <h3>Example tests</h3>
@@ -107,24 +106,6 @@ npm install @google/genai
   <li>You can customize AI response formatting in <code>route.ts</code> for different data shapes.</li>
   <li>For production deployment (Vercel, Netlify, etc.), add the API key in <strong>Environment Variables</strong>.</li>
 </ul>
-
-<hr>
-
-<h2>🛠 Contribution Guidelines</h2>
-<ol>
-  <li>Fork the repository.</li>
-  <li>Create a feature branch:
-    <pre><code>git checkout -b feature/your-feature</code></pre>
-  </li>
-  <li>Make your changes and <strong>write tests</strong> if needed.</li>
-  <li>Commit your changes:
-    <pre><code>git commit -m "feat: add new feature X"</code></pre>
-  </li>
-  <li>Push to your branch:
-    <pre><code>git push origin feature/your-feature</code></pre>
-  </li>
-  <li>Open a Pull Request for review.</li>
-</ol>
 
 <hr>
 
