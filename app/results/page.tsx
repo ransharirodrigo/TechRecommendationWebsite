@@ -86,12 +86,16 @@ export default function ResultsPage() {
 
               {/* Footer - Price and Button */}
               <div className="flex items-center justify-between mt-8 pt-8 border-t border-gray-100">
-                <span className="text-2xl font-bold text-gray-900">
-                  ₹ {product.price.toLocaleString()}
-                </span>
-                <button className="px-5 py-2.5 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium text-sm">
+                <button
+                  onClick={() => {
+                    sessionStorage.setItem("selectedLaptop", JSON.stringify(product));
+                    router.push(`/laptop/${index}`);
+                  }}
+                  className="px-5 py-2.5 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium text-sm"
+                >
                   View Details
                 </button>
+
               </div>
             </div>
           ))}

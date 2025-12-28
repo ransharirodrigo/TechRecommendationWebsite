@@ -66,9 +66,21 @@ JSON format MUST be:
     "image": "/laptops/sample.png",
     "description": "Short, clear description",
     "tags": ["tag1", "tag2"],
-    "badge": "Best Value"
+    "badge": "Best Value",
+      "recommendedSpecs": {
+      "RAM": "Recommendation",
+      "Storage": "Recommendation",
+      "CPU": "Recommendation",
+      "GPU": "Recommendation",
+      "Display": "Recommendation",
+      "Battery": "Recommendation",
+      "Ports": "Recommendation",
+      "Upgradeability": "Recommendation"
+    },
+    "notes": "Optional buying advice"
   }
 ]
+
 
 User prompt:
 ${prompt}
