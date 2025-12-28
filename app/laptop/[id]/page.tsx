@@ -19,7 +19,7 @@ export default function LaptopDetailsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="max-w-5xl mx-auto px-8 py-16 ">
+      <div className="max-w-7xl mx-auto  py-16 ">
         
        {/* Back Button */}
         <div className="flex justify-end mb-10">
