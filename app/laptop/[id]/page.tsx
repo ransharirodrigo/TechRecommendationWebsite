@@ -19,23 +19,26 @@ export default function LaptopDetailsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="max-w-5xl mx-auto px-8 py-16">
-        {/* Back Button */}
-        <button
-          onClick={() => router.back()}
-          className="group px-6 py-2.5 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-200 font-medium text-sm whitespace-nowrap mb-10 shadow-sm"
-        >
-          <span className="inline-flex items-center gap-2">
-            <span className="transform group-hover:-translate-x-1 transition-transform duration-200">←</span>
-            Back to results
-          </span>
-        </button>
+      <div className="max-w-5xl mx-auto px-8 py-16 ">
+        
+       {/* Back Button */}
+        <div className="flex justify-end mb-10">
+          <button
+            onClick={() => router.back()}
+            className="group px-6 py-2.5 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-200 font-medium text-sm whitespace-nowrap shadow-sm"
+          >
+            <span className="inline-flex items-center gap-2">
+              <span className="transform group-hover:-translate-x-1 transition-transform duration-200">←</span>
+              Back to results
+            </span>
+          </button>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Image */}
           <div className="bg-white rounded-2xl p-10 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
             <img
-              src={laptop.image}
+              src="/laptops/single_page_laptop.webp"
               alt={laptop.name}
               className="max-h-96 object-contain transform hover:scale-105 transition-transform duration-300"
             />
