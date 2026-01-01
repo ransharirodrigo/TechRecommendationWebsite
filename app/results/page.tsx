@@ -3,18 +3,45 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+interface RecommendedLaptop {
+  name: string;
+  price: number;
+  image?: string;
+  description: string;
+  tags?: string[];
+  badge?: string;
+  recommendedSpecs?: {
+    RAM?: string;
+    Storage?: string;
+    CPU?: string;
+    GPU?: string;
+    Display?: string;
+    Battery?: string;
+    Ports?: string;
+    Upgradeability?: string;
+  };
+  notes?: string;
+}
+
 export default function ResultsPage() {
   const router = useRouter();
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<RecommendedLaptop[]>([]);
 
   useEffect(() => {
     const stored = sessionStorage.getItem("results");
-    if (stored) {
-      setResults(JSON.parse(stored));
-    } else {
+
+    if (!stored) {
+      router.push("/");
+      return;
+    }
+
+    try {
+      const parsed: RecommendedLaptop[] = JSON.parse(stored);
+      setResults(parsed);
+    } catch {
       router.push("/");
     }
-  }, []);
+  }, [router]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -52,7 +79,7 @@ export default function ResultsPage() {
 
               <div className="h-56 flex items-center justify-center mb-8 bg-gray-50 rounded-lg">
                 <img
-                   src="/laptops/single_page_laptop.webp"
+                  src={product.image || "/laptops/single_page_laptop.webp"}
                   alt={product.name}
                   className="max-h-full max-w-full object-contain"
                 />
