@@ -79,7 +79,7 @@ export default function ResultsPage() {
 
               <div className="h-56 flex items-center justify-center mb-8 bg-gray-50 rounded-lg">
                 <img
-                  src={product.image || "/laptops/single_page_laptop.webp"}
+                  src="/laptops/single_page_laptop.webp"
                   alt={product.name}
                   className="max-h-full max-w-full object-contain"
                 />
