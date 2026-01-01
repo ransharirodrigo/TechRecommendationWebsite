@@ -20,7 +20,6 @@ export default function ResultsPage() {
     <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-8 py-16">
 
-        {/* Header Section - Single Row */}
         <div className="flex items-start justify-between mb-16">
           <div>
             <h1 className="text-5xl font-bold text-gray-900 tracking-tight">
@@ -39,30 +38,26 @@ export default function ResultsPage() {
           </button>
         </div>
 
-        {/* Cards Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((product, index) => (
             <div
               key={index}
               className="relative bg-white border border-gray-200 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-200"
             >
-              {/* Badge */}
               {product.badge && (
                 <div className="absolute top-6 right-6 px-2.5 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-semibold tracking-wide">
                   {product.badge}
                 </div>
               )}
 
-              {/* Image Container */}
               <div className="h-56 flex items-center justify-center mb-8 bg-gray-50 rounded-lg">
                 <img
-                  src={product.image}
+                   src="/laptops/single_page_laptop.webp"
                   alt={product.name}
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
 
-              {/* Product Info */}
               <h2 className="text-lg font-semibold text-gray-900">
                 {product.name}
               </h2>
@@ -70,7 +65,6 @@ export default function ResultsPage() {
                 {product.description}
               </p>
 
-              {/* Tags */}
               {product.tags && (
                 <div className="flex flex-wrap gap-2 mt-5">
                   {product.tags.map((tag, i) => (
@@ -84,7 +78,6 @@ export default function ResultsPage() {
                 </div>
               )}
 
-              {/* Footer - Price and Button */}
               <div className="flex items-center justify-between mt-8 pt-8 border-t border-gray-100">
                 <button
                   onClick={() => {

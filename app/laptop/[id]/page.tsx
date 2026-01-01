@@ -21,7 +21,6 @@ export default function LaptopDetailsPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="max-w-7xl mx-auto  py-16 ">
         
-       {/* Back Button */}
         <div className="flex justify-end mb-10">
           <button
             onClick={() => router.back()}
@@ -35,7 +34,6 @@ export default function LaptopDetailsPage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Image */}
           <div className="bg-white rounded-2xl p-10 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
             <img
               src="/laptops/single_page_laptop.webp"
@@ -44,7 +42,6 @@ export default function LaptopDetailsPage() {
             />
           </div>
 
-          {/* Info */}
           <div className="space-y-4">
             {laptop.badge && (
               <span className="inline-block px-4 py-1.5 text-xs font-semibold bg-gradient-to-r from-green-400 to-green-500 text-white rounded-full shadow-md">
@@ -58,7 +55,6 @@ export default function LaptopDetailsPage() {
               {laptop.description}
             </p>
 
-            {/* Tags */}
             {laptop.tags && (
               <div className="flex flex-wrap gap-2 mb-4 mt-4">
                 {laptop.tags.map((tag: string, i: number) => (
@@ -76,7 +72,6 @@ export default function LaptopDetailsPage() {
           </div>
         </div>
 
-        {/* Recommended Specs */}
         <div className="mt-20">
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2 mt-2">

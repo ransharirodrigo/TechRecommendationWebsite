@@ -1,7 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextResponse } from "next/server";
 
-
 export async function POST(req: Request) {
 
     if (!process.env.GEMINI_API_KEY) {
@@ -103,7 +102,6 @@ ${prompt}
             );
         }
 
-        // 🔴 Handle non-tech prompts
         if (data?.error === "NOT_TECH_RELATED") {
             return NextResponse.json(
                 {
