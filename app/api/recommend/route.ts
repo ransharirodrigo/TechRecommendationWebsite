@@ -2,33 +2,36 @@ import { GoogleGenAI } from "@google/genai";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+  if (!process.env.GEMINI_API_KEY) {
+    return NextResponse.json(
+      { error: "GEMINI_API_KEY is missing" },
+      { status: 500 }
+    );
+  }
 
-    if (!process.env.GEMINI_API_KEY) {
-        throw new Error("GEMINI_API_KEY is missing");
+  const ai = new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY,
+  });
+
+  try {
+    const body = await req.json();
+    const prompt: string | undefined = body?.prompt;
+
+    if (!prompt || typeof prompt !== "string") {
+      return NextResponse.json(
+        { error: "Prompt is required" },
+        { status: 400 }
+      );
     }
 
-    const ai = new GoogleGenAI({
-        apiKey: process.env.GEMINI_API_KEY,
-    });
-    
-    try {
-        const { prompt } = await req.json();
-
-        if (!prompt) {
-            return NextResponse.json(
-                { error: "Prompt is required" },
-                { status: 400 }
-            );
-        }
-
-        const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
-            contents: [
-                {
-                    role: "user",
-                    parts: [
-                        {
-                            text: `
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: [
+        {
+          role: "user",
+          parts: [
+            {
+              text: `
 You are an AI assistant for a laptop recommendation website.
 
 STEP 1:
@@ -66,7 +69,7 @@ JSON format MUST be:
     "description": "Short, clear description",
     "tags": ["tag1", "tag2"],
     "badge": "Best Value",
-      "recommendedSpecs": {
+    "recommendedSpecs": {
       "RAM": "Recommendation",
       "Storage": "Recommendation",
       "CPU": "Recommendation",
@@ -80,45 +83,54 @@ JSON format MUST be:
   }
 ]
 
-
 User prompt:
 ${prompt}
-`
-                        }
-                    ]
-                }
-            ]
-        });
+`,
+            },
+          ],
+        },
+      ],
+    });
 
+    const text = response.text;
 
-        let data;
-
-        try {
-            data = JSON.parse(response.text);
-        } catch {
-            return NextResponse.json(
-                { error: "Invalid AI response format" },
-                { status: 500 }
-            );
-        }
-
-        if (data?.error === "NOT_TECH_RELATED") {
-            return NextResponse.json(
-                {
-                    error: "Please enter a tech-related prompt (example: laptop for coding, budget 90,000 LKR)"
-                },
-                { status: 400 }
-            );
-        }
-
-        return NextResponse.json(data);
-
-
-    } catch (err: any) {
-        console.error("API ERROR:", err);
-        return NextResponse.json(
-            { error: err.message || "AI generation failed" },
-            { status: 500 }
-        );
+    if (!text || typeof text !== "string") {
+      return NextResponse.json(
+        { error: "Empty response from AI" },
+        { status: 500 }
+      );
     }
+
+    let data: any;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid AI response format" },
+        { status: 500 }
+      );
+    }
+
+    if (data?.error === "NOT_TECH_RELATED") {
+      return NextResponse.json(
+        {
+          error:
+            "Please enter a tech-related prompt (example: laptop for coding, budget 90,000 LKR)",
+        },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json(data);
+  } catch (err: unknown) {
+    console.error("API ERROR:", err);
+
+    const message =
+      err instanceof Error ? err.message : "AI generation failed";
+
+    return NextResponse.json(
+      { error: message },
+      { status: 500 }
+    );
+  }
 }
