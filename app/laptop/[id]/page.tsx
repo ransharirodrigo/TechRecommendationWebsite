@@ -19,7 +19,7 @@ export default function LaptopDetailsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="max-w-7xl mx-auto  py-16 ">
+      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
         
         <div className="flex justify-end mb-10">
           <button
@@ -33,8 +33,8 @@ export default function LaptopDetailsPage() {
           </button>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="bg-white rounded-2xl p-10 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="bg-white rounded-2xl p-6 sm:p-10 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
             <img
               src="/laptops/single_page_laptop.webp"
               alt={laptop.name}
