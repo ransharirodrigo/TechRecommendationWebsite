@@ -45,11 +45,11 @@ export default function ResultsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
 
         <div className="flex items-start justify-between mb-16">
           <div>
-            <h1 className="text-5xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
               Recommended for You
             </h1>
             <p className="mt-3 text-base text-gray-500 font-normal">
@@ -57,19 +57,19 @@ export default function ResultsPage() {
             </p>
           </div>
 
-          <button
+          {/* <button
             onClick={() => router.push("/")}
             className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium text-sm whitespace-nowrap"
           >
             ← Start new recommendation
-          </button>
+          </button> */}
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((product, index) => (
             <div
               key={index}
-              className="relative bg-white border border-gray-200 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-200"
+              className="relative bg-white border border-gray-200 rounded-lg p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow duration-200"
             >
               {product.badge && (
                 <div className="absolute top-6 right-6 px-2.5 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-semibold tracking-wide">

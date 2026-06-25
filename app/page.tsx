@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -51,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-8 py-16">
+    <div className="min-h-screen bg-white flex items-center justify-center p-8">
       <div className="w-full max-w-5xl">
 
         <div className="text-center mb-16">
@@ -118,6 +119,15 @@ export default function Home() {
         >
           {loading ? "AI is thinking..." : "Get AI Recommendations"}
         </button>
+
+        <div style={{marginTop: '2rem'}} className="text-center text-gray-500 space-y-1">
+          <p>© 2026 Smart Tech Finder.</p>
+          <p>Built by 
+            <Link href="https://www.linkedin.com/in/ransharirodrigo/" style={{ color: 'blue', textDecoration: 'underline', marginLeft: '4px' }}>
+               Ranshari Rodrigo
+            </Link>
+          </p>
+        </div>
 
       </div>
     </div>
