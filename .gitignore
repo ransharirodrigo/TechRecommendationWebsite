@@ -36,6 +36,10 @@ yarn-error.log*
 .vercel
 
 # typescript
+
+.vscode
+.env
+api.js
 *.tsbuildinfo
 next-env.d.ts
 config.bat
